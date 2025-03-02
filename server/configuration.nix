@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./containers.nix
     ];
 
   # Bootloader.
@@ -73,12 +74,13 @@
       PubkeyAuthentication = true;
     };
   };
+  services.fail2ban.enable = true; # block repeated ssh login attemps
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account.
   users.users.axel = {
     isNormalUser = true;
     description = "Axel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM6TnZanVTSOFIoGj7CxP7MygdM9G9Pxzm7FgqbMnxi9 axel@rarch" ];
   };
@@ -89,8 +91,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     neofetch
   ];
 
