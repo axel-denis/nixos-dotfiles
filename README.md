@@ -12,7 +12,7 @@
 > The configuration file is located at `/etc/nixos/configuration.nix` and can be edited with `sudo nano...`
 > After an edit, apply the configuration with `sudo nixos-rebuild switch`
 
-## if unable to paste the config
+## if unable to paste the config / access physically
 
 - Enable ssh by adding `services.openssh.enable = true;` in the config and apply it.
 - Login from oustide with `TERM=xterm ssh user@nixos-ip`
@@ -21,5 +21,8 @@
 ## if able to paste
 You can now add the configuration from this repo (*A lot of things need to be changed, like the user, the ssh key, etc*)
 > [!NOTE]
-> The configuration forbid ssh login by password, you need to use your private ssh key:
+> The server configuration forbid ssh login by password, you need to use your private ssh key:
 > (example) `TERM=xterm ssh -i ~/.ssh/for_nixosvm user@ip`
+
+You can also upload folders (containing the config) with :
+`scp -r ./config user@ip:/etc/nixos/`
