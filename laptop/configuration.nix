@@ -9,7 +9,7 @@ let
   dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
   dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
 
-  repo = builtins.fetchGit {
+  dotfilesRepo = builtins.fetchGit {
     url = dotfilesRepoUrl;
     rev = dotfilesCommitHash;
   };
@@ -38,7 +38,7 @@ in {
       
       # Copy contents with rsync, preserving permissions
       ${pkgs.rsync}/bin/rsync -rlpt --chown=${username}:users --delete \
-        ${repo}/ "$config_dir/"
+        ${dotfilesRepo}/ "$config_dir/"
     '') usersWithHome);
 
     # The activation script should run after filesystems are mounted
