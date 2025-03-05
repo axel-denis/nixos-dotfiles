@@ -1,3 +1,0 @@
-[submodule "laptop/dotfiles"]
-	path = laptop/dotfiles
-	url = https://github.com/axel-denis/hyprland-dotfiles.git
