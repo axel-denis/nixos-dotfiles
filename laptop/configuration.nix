@@ -1,12 +1,51 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
 { config, pkgs, ... }:
 
-{
+let
+  # Git repository configuration
+  dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
+  dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
+
+  repo = builtins.fetchGit {
+    url = dotfilesRepoUrl;
+    rev = dotfilesCommitHash;
+  };
+
+  # Get all users with home directories
+  usersWithHome = pkgs.lib.filterAttrs (name: user: ((user.home != null) && (pkgs.lib.hasPrefix "/home/" user.home))) config.users.users;
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./hyprland.nix
+#      ./hyprland.nix
       ./ssdm.nix # login screen
     ];
+
+  programs.hyprland.enable = true;
+  services.displayManager.defaultSession = "hyprland";
+
+  # copying configs to /home/$user/.config
+  system.activationScripts.copyDotfiles = {
+    text = pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList (username: user: ''
+      echo "Copying dotfiles to ${username}'s .config..."
+      config_dir="${user.home}/.config"
+      
+      # Create .config directory if it doesn't exist
+      ${pkgs.coreutils}/bin/mkdir -p "$config_dir"
+      
+      # Copy contents with rsync, preserving permissions
+      ${pkgs.rsync}/bin/rsync -rlpt --chown=${username}:users --delete \
+        ${repo}/ "$config_dir/"
+    '') usersWithHome);
+
+    # The activation script should run after filesystems are mounted
+    deps = [ "users" "groups" ];
+  };
+
+
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -57,9 +96,9 @@
     enable = true;
     theme = "robbyrussell";
   };
-  # enable neofetch on terminal startup
+
+  # run on terminal startup
   environment.etc."zprofile".text = ''
-    neofetch
   '';
 
   # enable ssh
@@ -91,6 +130,8 @@
     neofetch
     pkgs.kitty # required for the default Hyprland config
     git
+    home-manager
+    rsync # for dotfiles copy
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
