@@ -122,6 +122,11 @@ in {
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM6TnZanVTSOFIoGj7CxP7MygdM9G9Pxzm7FgqbMnxi9 axel@rarch" ];
   };
 
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "where_is_my_sddm_theme";
+  };
   # Allow unfree packages
 #  nixpkgs.config.allowUnfree = true;
   programs.git.enable = true;
@@ -150,6 +155,7 @@ in {
     spotify
     # TODO wireguard
     nixos-generators # remove if not making ISOs
+    where-is-my-sddm-theme
   ];
 
   services.flatpak.enable = true;
