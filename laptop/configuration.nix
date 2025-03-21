@@ -19,13 +19,6 @@ let
 
 in {
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-#      ./hyprland.nix
-      ./ssdm.nix # login screen
-    ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.hyprland.enable = true;
@@ -52,7 +45,7 @@ in {
 
 
   # Bootloader.
-  boot.loader.grub.enable = true;
+  boot.loader.grub.enable = pkgs.lib.mkForce true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
