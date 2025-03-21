@@ -116,6 +116,8 @@ in {
   };
   services.fail2ban.enable = true; # block repeated ssh login attemps
 
+  services.tlp.enable = true; # power gestion/savings
+
   # Define a user account.
   users.users.axel = {
     isNormalUser = true;
@@ -144,13 +146,23 @@ in {
     hyprpaper
     blueman
     pavucontrol
-    tlp # power savings
     swaylock # lock screen ?
     swaylock-effects
     webcord
     hyprpanel
     # hyprswitch failed for now
     inputs.matugen.packages.${system}.default
+    spotify
+    # TODO wireguard
+
+    nixos-generators # remove if not making ISOs
+  ];
+
+  services.flatpak.enable = true;
+  # run with flatpak run (full package name)
+  services.flatpak.packages = [
+    # TODO - does not detect tlp...
+    "com.github.d4nj1.tlpui"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
