@@ -7,11 +7,13 @@
 let
   # Git repository configuration
   dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
-  dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
+  #dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
 
   dotfilesRepo = pkgs.fetchgit {
     url = dotfilesRepoUrl;
-    rev = dotfilesCommitHash;
+    rev = "refs/tags/1.0";
+    hash = "sha256-Wzk6dW1zs+F++vEyJjp2B9FhYWi50zoM8LqlSrHRGAk="; #
+    # NOTE - idk how to found this hash, found it only because if you don't set it, the error specifies it.
   };
 
   # Get all users with home directories
@@ -122,11 +124,11 @@ in {
 
   # Allow unfree packages
 #  nixpkgs.config.allowUnfree = true;
-
+  programs.git.enable = true;
   environment.systemPackages = with pkgs; [
     neofetch
     pkgs.kitty # required for the default Hyprland config
-    git
+#    git
     rsync # for dotfiles copy
 
     brightnessctl
@@ -147,7 +149,6 @@ in {
     inputs.matugen.packages.${system}.default
     spotify
     # TODO wireguard
-
     nixos-generators # remove if not making ISOs
   ];
 
