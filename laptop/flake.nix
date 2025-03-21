@@ -33,7 +33,6 @@
       modules = [
         nix-flatpak.nixosModules.nix-flatpak
         ./hardware-configuration.nix
-        ./ssdm.nix
         ./configuration.nix
       ];
     };
