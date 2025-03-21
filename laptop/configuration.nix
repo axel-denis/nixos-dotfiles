@@ -124,7 +124,6 @@ in {
 #  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    fetchgit
     neofetch
     pkgs.kitty # required for the default Hyprland config
     git
