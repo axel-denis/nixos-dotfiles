@@ -9,7 +9,7 @@ let
   dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
   dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
 
-  dotfilesRepo = builtins.fetchGit {
+  dotfilesRepo = pkgs.fetchgit {
     url = dotfilesRepoUrl;
     rev = dotfilesCommitHash;
   };
@@ -124,6 +124,7 @@ in {
 #  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    fetchgit
     neofetch
     pkgs.kitty # required for the default Hyprland config
     git
