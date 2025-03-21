@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   # Git repository configuration
@@ -16,13 +16,17 @@ let
 
   # Get all users with home directories
   usersWithHome = pkgs.lib.filterAttrs (name: user: ((user.home != null) && (pkgs.lib.hasPrefix "/home/" user.home))) config.users.users;
+
 in {
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 #      ./hyprland.nix
       ./ssdm.nix # login screen
     ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.hyprland.enable = true;
   services.displayManager.defaultSession = "hyprland";
@@ -122,16 +126,31 @@ in {
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+#  nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     neofetch
     pkgs.kitty # required for the default Hyprland config
     git
-    home-manager
     rsync # for dotfiles copy
+
+    brightnessctl
+#    nmtui # find alternative
+    pipewire
+    wireplumber # check if the two are necessary
+    grim # recheck
+    slurp # recheck
+    waybar
+    hyprpaper
+    blueman
+    pavucontrol
+    tlp # power savings
+    swaylock # lock screen ?
+    swaylock-effects
+    webcord
+    hyprpanel
+    # hyprswitch failed for now
+    inputs.matugen.packages.${system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
