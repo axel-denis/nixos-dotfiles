@@ -68,15 +68,19 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ko_KR.UTF-8";
-    LC_IDENTIFICATION = "ko_KR.UTF-8";
-    LC_MEASUREMENT = "ko_KR.UTF-8";
-    LC_MONETARY = "ko_KR.UTF-8";
-    LC_NAME = "ko_KR.UTF-8";
-    LC_NUMERIC = "ko_KR.UTF-8";
-    LC_PAPER = "ko_KR.UTF-8";
-    LC_TELEPHONE = "ko_KR.UTF-8";
-    LC_TIME = "ko_KR.UTF-8";
+    LC_ALL = "en_US.UTF-8";
+    LC_CTYPE = "en_US.UTF8";
+    LC_ADDRESS = "es_VE.UTF-8";
+    LC_IDENTIFICATION = "es_VE.UTF-8";
+    LC_MEASUREMENT = "es_VE.UTF-8";
+    LC_MESSAGES = "en_US.UTF-8";
+    LC_MONETARY = "es_VE.UTF-8";
+    LC_NAME = "es_VE.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "es_VE.UTF-8";
+    LC_TELEPHONE = "es_VE.UTF-8";
+    LC_TIME = "es_VE.UTF-8";
+    LC_COLLATE = "es_VE.UTF-8";
   };
 
   # Configure keymap in X11
@@ -125,7 +129,7 @@ in {
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "where_is_my_sddm_theme";
+    theme = "where_is_my_sddm_theme_qt5";
   };
   # Allow unfree packages
 #  nixpkgs.config.allowUnfree = true;
@@ -155,7 +159,9 @@ in {
     spotify
     # TODO wireguard
     nixos-generators # remove if not making ISOs
-    where-is-my-sddm-theme
+    (where-is-my-sddm-theme.override {
+        variants = ["qt5"];
+    })
   ];
 
   services.flatpak.enable = true;
