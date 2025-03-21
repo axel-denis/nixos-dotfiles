@@ -11,9 +11,11 @@
       flake = false;
     };*/
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=5e54c3c"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-flatpak, ... }: let
+  outputs = inputs@{ self, nixpkgs, nix-flatpak, nixos-generators, ... }: let
     system = "x86_64-linux";
   in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -30,8 +32,28 @@
       };
       modules = [
         nix-flatpak.nixosModules.nix-flatpak
+        ./hardware-configuration.nix
+        ./ssdm.nix
         ./configuration.nix
       ];
+    };
+    packages.${system}.iso = nixos-generators.nixosGenerate {
+      inherit system;
+      modules = [
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+        ./configuration.nix
+        # Add any ISO-specific overrides here if needed
+      ];
+      specialArgs = { inherit inputs; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          inputs.hyprpanel.overlay
+ #         inputs.hyprswitch.overlays
+        ];
+      };
+      format = "iso";
     };
   };
 }
