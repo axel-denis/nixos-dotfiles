@@ -10,7 +10,7 @@ I'm a newbie regarding NixOS, so if you happens to see this repo and have any ad
 
 - Download the iso with the Gnome installer
 - Install trough the standard process
-  - Create an user and a password in the installer. For easier use with this repo's config, the user should be "axel"
+  - Create an user and a password in the installer.
   - Do not enable any desktop env (if for server, otherwise do as you please)
   - Install
 - Restart and login to your user
