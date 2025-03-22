@@ -40,4 +40,3 @@ rm -rf "$TEMP_DIR"
 
 echo "Configuration added successfully!"
 sudo nixos-rebuild switch
-tail -n 1 nix-collect-garbage
