@@ -6,16 +6,26 @@ I'm a newbie regarding NixOS, so if you happens to see this repo and have any ad
 > I'm aware that a public ssh key is exposed in the config.
 > Its only purpose is to allow a first connection as the config disable password ssh login. It isn't used in production.
 
-## Install manually
+# Install the OS
 
 - Download the iso with the Gnome installer
 - Install trough the standard process
-  - Create an user and a password in the installer
+  - Create an user and a password in the installer. For easier use with this repo's config, the user should be "axel"
   - Do not enable any desktop env (if for server, otherwise do as you please)
   - Install
 - Restart and login to your user
 
-## Config setup
+# Install the config
+## with script
+
+Execute the following command to pull and use the install.sh script from this repo :
+```sh
+curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --extra-experimental-features flakes --run "sh -s -- laptop"
+```
+Change "laptop" by "server" to select the configuration to be used.
+**Don't forget later to customise the configuration, especially security wise (ssh, users...)**
+
+## manually
 > [!NOTE]
 > The configuration file is located at `/etc/nixos/configuration.nix` and can be edited with `sudo nano...`
 > After an edit, apply the configuration with `sudo nixos-rebuild switch`
@@ -34,3 +44,5 @@ You can now add the configuration from this repo (*A lot of things need to be ch
 
 You can also upload folders (containing the config) with :
 `scp -r ./config user@ip:/etc/nixos/`
+
+**Don't forget later to customise the configuration, especially security wise (ssh, users...)**
