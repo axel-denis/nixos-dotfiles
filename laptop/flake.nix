@@ -34,6 +34,9 @@
         nix-flatpak.nixosModules.nix-flatpak
         ./hardware-configuration.nix
         ./configuration.nix
+        ./packages.nix
+        ./users.nix
+        ./dotfiles.nix
       ];
     };
     packages.${system}.iso = nixos-generators.nixosGenerate {
@@ -41,6 +44,9 @@
       modules = [
         inputs.nix-flatpak.nixosModules.nix-flatpak
         ./configuration.nix
+        ./packages.nix
+        ./users.nix
+        ./dotfiles.nix
         # Add any ISO-specific overrides here if needed
       ];
       specialArgs = { inherit inputs; };
