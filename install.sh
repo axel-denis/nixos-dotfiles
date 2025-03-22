@@ -38,4 +38,5 @@ sudo cp -rf "$SOURCE_DIR"/* /etc/nixos/ || {
 echo "Cleaning up..."
 rm -rf "$TEMP_DIR"
 
-echo "Installation completed successfully!"
+echo "Configuration added successfully!"
+sudo nixos-rebuild switch
