@@ -25,8 +25,9 @@ in {
       ${pkgs.coreutils}/bin/mkdir -p "$config_dir"
       
       # Copy contents with rsync, preserving permissions
-      ${pkgs.rsync}/bin/rsync -rlpt --chown=${username}:users --delete \
-        ${dotfilesRepo}/ "$config_dir/"
+      #${pkgs.rsync}/bin/rsync -rlpt --chown=${username}:users --delete \
+      #  ${dotfilesRepo}/ "$config_dir/"
+      ${pkgs.coreutils}/bin/cp -rf "${dotfilesRepo}/." "$config_dir/"
     '') usersWithHome);
 
     # The activation script should run after filesystems are mounted
