@@ -20,7 +20,7 @@ I'm a newbie regarding NixOS, so if you happens to see this repo and have any ad
 
 Execute the following command to pull and use the install.sh script from this repo :
 ```sh
-curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --extra-experimental-features flakes --run "sh -s -- laptop"
+curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --run "sh -s -- laptop"
 ```
 Change "laptop" by "server" to select the configuration to be used.
 **Don't forget later to customise the configuration, especially security wise (ssh, users...)**
