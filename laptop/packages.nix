@@ -5,6 +5,7 @@
     pkgs.kitty # required for the default Hyprland config
     rsync # for dotfiles copy
 
+    wofi
     brightnessctl
     pipewire
     wireplumber # check if the two are necessary
