@@ -6,8 +6,8 @@ let
 
   dotfilesRepo = pkgs.fetchgit {
     url = dotfilesRepoUrl;
-    rev = "refs/tags/1.0";
-    hash = "sha256-Wzk6dW1zs+F++vEyJjp2B9FhYWi50zoM8LqlSrHRGAk="; #
+    rev = "refs/tags/1.1";
+    hash = "sha256-UB/cAd9Btg25g8JrS3NQOj+gkNZVamFTVEyAe2XG2pU="; 
     # NOTE - idk how to found this hash, found it only because if you don't set it, the error specifies it.
   };
 
