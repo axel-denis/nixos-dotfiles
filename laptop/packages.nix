@@ -6,6 +6,7 @@
     rsync # for dotfiles copy
 
     wofi
+    vscode    
     brightnessctl
     pipewire
     wireplumber # check if the two are necessary
@@ -28,6 +29,15 @@
     })
     blender
   ];
+  fonts.packages = with pkgs; [ inter monaspace nerdfonts ];
+  fonts.enableDefaultPackages = true;
+  fonts.fontconfig = {
+    defaultFonts = {
+      sansSerif = [ "Inter" ];
+      serif = [ "Inter" ];
+      monospace = [ "Monaspace Neon" ];
+    };
+  };
 
   services.flatpak.enable = true;
   # run with flatpak run (full package name)
