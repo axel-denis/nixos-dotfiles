@@ -3,7 +3,7 @@
 let
   dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
 
-  dotfilesRepo = pkgs.fetchGit {
+  dotfilesRepo = builtins.fetchGit {
     url = dotfilesRepoUrl;
     ref = "main";
   };
