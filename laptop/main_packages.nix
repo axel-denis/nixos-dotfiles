@@ -3,7 +3,6 @@
   environment.systemPackages = with pkgs; [
     neofetch
     pkgs.kitty # required for the default Hyprland config
-    rsync # for dotfiles copy
 
     wofi
     hyprlock
