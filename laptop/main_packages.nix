@@ -6,6 +6,7 @@
     rsync # for dotfiles copy
 
     wofi
+    hyprlock
     vscode
     firefox
     brightnessctl

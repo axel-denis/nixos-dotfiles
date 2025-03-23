@@ -2,13 +2,10 @@
 
 let
   dotfilesRepoUrl = "https://github.com/axel-denis/hyprland-dotfiles.git";
-  #dotfilesCommitHash = "205ec7c7cb9ab17ec80c23ce0e53ef1708fd26ab"; # commit hash
 
-  dotfilesRepo = pkgs.fetchgit {
+  dotfilesRepo = pkgs.fetchGit {
     url = dotfilesRepoUrl;
-    rev = "refs/tags/1.2";
-    hash = "sha256-mM4o2Fo6AcehvOopWPgx2oN5RxxttlnTRy/4Uz9Qzk8="; 
-    # NOTE - idk how to found this hash, found it only because if you don't set it, the error specifies it.
+    ref = "main";
   };
 
   # Get all users with home directories
