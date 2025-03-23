@@ -28,6 +28,7 @@ in {
       #${pkgs.rsync}/bin/rsync -rlpt --chown=${username}:users --delete \
       #  ${dotfilesRepo}/ "$config_dir/"
       ${pkgs.coreutils}/bin/cp -rf "${dotfilesRepo}/." "$config_dir/"
+      ${pkgs.coreutils}/bin/chown "$username" "$config_dir"
     '') usersWithHome);
 
     # The activation script should run after filesystems are mounted
