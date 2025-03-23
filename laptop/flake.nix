@@ -35,6 +35,7 @@
         ./hardware-configuration.nix
         ./configuration.nix
         ./packages.nix
+        ./main_packages.nix
         ./users.nix
         ./dotfiles.nix
       ];
@@ -45,6 +46,7 @@
         inputs.nix-flatpak.nixosModules.nix-flatpak
         ./configuration.nix
         ./packages.nix
+        ./main_packages.nix
         ./users.nix
         ./dotfiles.nix
         # Add any ISO-specific overrides here if needed
