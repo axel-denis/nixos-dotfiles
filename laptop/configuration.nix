@@ -20,6 +20,8 @@
   services.fail2ban.enable = true; # block repeated ssh login attemps
   services.tlp.enable = true; # power gestion/savings
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
