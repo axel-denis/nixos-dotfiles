@@ -60,6 +60,10 @@
     neofetch
   '';
 
+  environment.interactiveShellInit = ''
+    alias update='curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --run "sh -s -- server"'
+  '';
+
   # enable ssh
   services.openssh = {
     enable = true;
