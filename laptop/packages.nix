@@ -5,6 +5,7 @@
     arduino-ide
     cargo
     nodejs_23
+    wl-clipboard
   ];
 
   # for arduino ide to compile to renesas board
