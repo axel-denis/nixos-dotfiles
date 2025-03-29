@@ -7,6 +7,7 @@
     wofi
     hyprlock
     vscode
+    direnv
     firefox
     brightnessctl
     pipewire
