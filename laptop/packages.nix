@@ -4,6 +4,8 @@
     bitwarden-desktop
     arduino-ide
     cargo
+    gcc
+    fuse3
     nodejs_23
     wl-clipboard
   ];
