@@ -6,7 +6,7 @@
 
     wofi
     hyprlock
-    vscode
+    vscode.fhs
     firefox
     brightnessctl
     pipewire
