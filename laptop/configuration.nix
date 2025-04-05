@@ -73,6 +73,7 @@
   programs.zsh.ohMyZsh = {
     enable = true;
     theme = "robbyrussell";
+    plugins = [ "direnv" ];
   };
 
   # enable ssh

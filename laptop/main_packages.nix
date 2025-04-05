@@ -7,6 +7,7 @@
     wofi
     hyprlock
     vscode.fhs
+    direnv
     firefox
     brightnessctl
     pipewire
@@ -21,6 +22,7 @@
     swaylock-effects
     webcord
     hyprpanel
+    wl-clipboard
     # hyprswitch failed for now
     inputs.matugen.packages.${system}.default
     spotify

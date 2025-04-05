@@ -3,10 +3,6 @@
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     arduino-ide
-    cargo
-    gcc
-    nodejs_23
-    wl-clipboard
   ];
 
   # for arduino ide to compile to renesas board
