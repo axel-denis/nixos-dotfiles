@@ -8,6 +8,7 @@
     wofi
     tree
     hyprlock
+    jq # necessary for hyprland focus.sh
     direnv
     firefox
     brightnessctl
