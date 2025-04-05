@@ -16,4 +16,9 @@
       destination = "/etc/udev/rules.d/60-arduino-renesas.rules";
     })
   ];
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["axel"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 }

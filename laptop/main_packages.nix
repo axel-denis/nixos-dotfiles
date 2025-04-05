@@ -3,10 +3,11 @@
   environment.systemPackages = with pkgs; [
     neofetch
     pkgs.kitty # required for the default Hyprland config
-
+    wl-clipboard
+    nixfmt-classic
     wofi
+    tree
     hyprlock
-    vscode.fhs
     direnv
     firefox
     brightnessctl
@@ -22,7 +23,6 @@
     swaylock-effects
     webcord
     hyprpanel
-    wl-clipboard
     # hyprswitch failed for now
     inputs.matugen.packages.${system}.default
     spotify
@@ -31,6 +31,8 @@
         variants = ["qt5"];
     })
     blender
+
+    vscode.fhs # fhs allows for extensions to use internal binaries
   ];
   fonts.packages = with pkgs; [ inter monaspace nerdfonts ];
   fonts.enableDefaultPackages = true;
