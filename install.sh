@@ -28,6 +28,7 @@ fi
 echo "Copying files to /etc/nixos..."
 sudo cp "/etc/nixos/hardware-configuration.nix" "$SOURCE_DIR"/
 sudo cp "/etc/nixos/flake.lock" "$SOURCE_DIR"/
+sudo cp "/etc/nixos/wireguard.nix" "$SOURCE_DIR"/
 sudo rm -rf "/etc/nixos/"
 sudo mkdir "/etc/nixos"
 sudo cp -rf "$SOURCE_DIR"/* /etc/nixos/ || {
