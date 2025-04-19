@@ -41,22 +41,26 @@
   hardware.bluetooth.powerOnBoot = true;
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [
+    "en_US.UTF-8"
+    "fr_FR.UTF-8/UTF-8"
+  ];
 
-  i18n.extraLocaleSettings = {
-    LC_ALL = "en_US.UTF-8";
-    LC_CTYPE = "en_US.UTF8";
-    LC_ADDRESS = "es_VE.UTF-8";
-    LC_IDENTIFICATION = "es_VE.UTF-8";
-    LC_MEASUREMENT = "es_VE.UTF-8";
-    LC_MESSAGES = "en_US.UTF-8";
-    LC_MONETARY = "es_VE.UTF-8";
-    LC_NAME = "es_VE.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "es_VE.UTF-8";
-    LC_TELEPHONE = "es_VE.UTF-8";
-    LC_TIME = "es_VE.UTF-8";
-    LC_COLLATE = "es_VE.UTF-8";
-  };
+  # i18n.extraLocaleSettings = {
+  #   LC_ALL = "en_US.UTF-8";
+  #   LC_CTYPE = "en_US.UTF8";
+  #   LC_ADDRESS = "es_VE.UTF-8";
+  #   LC_IDENTIFICATION = "es_VE.UTF-8";
+  #   LC_MEASUREMENT = "es_VE.UTF-8";
+  #   LC_MESSAGES = "en_US.UTF-8";
+  #   LC_MONETARY = "es_VE.UTF-8";
+  #   LC_NAME = "es_VE.UTF-8";
+  #   LC_NUMERIC = "en_US.UTF-8";
+  #   LC_PAPER = "es_VE.UTF-8";
+  #   LC_TELEPHONE = "es_VE.UTF-8";
+  #   LC_TIME = "es_VE.UTF-8";
+  #   LC_COLLATE = "es_VE.UTF-8";
+  # };
 
   # Configure keymap in X11
   services.xserver.xkb = {
