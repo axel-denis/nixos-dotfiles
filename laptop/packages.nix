@@ -3,6 +3,12 @@
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     arduino-ide
+
+    #libreoffice & speell check
+    libreoffice-qt
+    hunspell
+    hunspellDicts.fr-any
+#    hunspellDicts.en_US
   ];
 
   # for arduino ide to compile to renesas board
