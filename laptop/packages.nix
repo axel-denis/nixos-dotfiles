@@ -9,6 +9,8 @@
     hunspell
     hunspellDicts.fr-any
 #    hunspellDicts.en_US
+
+    quickemu # quick vm creator
   ];
 
   # for arduino ide to compile to renesas board
