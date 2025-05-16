@@ -108,6 +108,7 @@
 
   environment.interactiveShellInit = ''
     alias update='curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --run "sh -s -- laptop"'
+    alias trimgen='curl https://gist.githubusercontent.com/MaxwellDupre/3077cd229490cf93ecab08ef2a79c852/raw/ccb39ba6304ee836738d4ea62999f4451fbc27f7/trim-generations.sh | sudo bash -s 3 0 system'
   '';
 
   # This value determines the NixOS release from which the default
