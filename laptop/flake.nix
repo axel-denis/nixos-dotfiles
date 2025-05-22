@@ -38,7 +38,7 @@
         ./main_packages.nix
         ./users.nix
         ./dotfiles.nix
-        # ./wireguard.nix
+        ./transmission.nix
       ];
     };
     packages.${system}.iso = nixos-generators.nixosGenerate {
