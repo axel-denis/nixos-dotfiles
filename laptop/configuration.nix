@@ -20,6 +20,12 @@
   services.fail2ban.enable = true; # block repeated ssh login attemps
   services.tlp.enable = true; # power gestion/savings
 
+  # nvidia
+  services.hardware.bolt.enable = true;
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
+
   # allows wireguard to pass the firewall
   # import a wireguard file with :
   # nmcli connection import type wireguard file filename.conf
