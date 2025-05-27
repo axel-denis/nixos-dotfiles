@@ -20,8 +20,6 @@
     hyprpaper
     blueman
     pavucontrol
-    swaylock # lock screen ?
-    swaylock-effects
     webcord
     hyprpanel
     # hyprswitch failed for now
