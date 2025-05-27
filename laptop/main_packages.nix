@@ -35,7 +35,7 @@
 
     vscode.fhs # fhs allows for extensions to use internal binaries
   ];
-  fonts.packages = with pkgs; [ inter monaspace nerdfonts ];
+  fonts.packages = with pkgs; [ inter monaspace nerd-fonts.jetbrains-mono ];
   fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
     defaultFonts = {
