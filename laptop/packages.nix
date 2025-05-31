@@ -9,6 +9,7 @@
     hunspell
     hunspellDicts.fr-any
 #    hunspellDicts.en_US
+    obs-studio
   ];
 
   programs.steam = {
