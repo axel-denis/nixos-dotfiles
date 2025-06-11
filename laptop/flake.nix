@@ -38,7 +38,7 @@
         ./main_packages.nix
         ./users.nix
         ./dotfiles.nix
-        ./transmission.nix
+#        ./transmission.nix
       ];
     };
     packages.${system}.iso = nixos-generators.nixosGenerate {
