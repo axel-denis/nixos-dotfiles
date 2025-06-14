@@ -5,7 +5,7 @@ let
 
   dotfilesRepo = builtins.fetchGit {
     url = dotfilesRepoUrl;
-    rev = "67cec49b12d1ddeb6a1c956f1795523abff669cc";
+    rev = "a1fe3dc0fab76f37c7777ab683caffcdabee4e6f";
   };
 
   # Get all users with home directories
