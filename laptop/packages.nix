@@ -1,5 +1,4 @@
-{ config, pkgs, inputs, ... }:
-{
+{ config, pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     arduino-ide
@@ -8,15 +7,29 @@
     libreoffice-qt
     hunspell
     hunspellDicts.fr-any
-#    hunspellDicts.en_US
+    #    hunspellDicts.en_US
     obs-studio
+
+    cudatoolkit
+    # for star citizen (probably, should try to remove them)
+    dxvk
+    mesa
   ];
+
+  # NixOS configuration for Star Citizen requirements
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216;
+    "fs.file-max" = 524288;
+  };
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall =
+      true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   # for arduino ide to compile to renesas board
@@ -32,7 +45,7 @@
   ];
 
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["axel"];
+  users.groups.libvirtd.members = [ "axel" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 }
