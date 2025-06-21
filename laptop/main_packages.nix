@@ -29,7 +29,11 @@
     (where-is-my-sddm-theme.override {
         variants = ["qt5"];
     })
-    blender
+    cudaPackages.cuda_cudart
+    cudatoolkit
+    (blender.override {
+      cudaSupport = true;
+    })
 
     vscode.fhs # fhs allows for extensions to use internal binaries
   ];

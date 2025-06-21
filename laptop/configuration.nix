@@ -1,5 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
+  imports = [ ./cachix.nix ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
