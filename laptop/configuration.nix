@@ -12,7 +12,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  time.timeZone = "Asia/Seoul";
+  time.timeZone = "Europe/Paris";
 
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = true;
@@ -20,6 +20,11 @@
   services.displayManager.defaultSession = "hyprland";
   services.fail2ban.enable = true; # block repeated ssh login attemps
   services.tlp.enable = true; # power gestion/savings
+
+  networking.hosts = {
+    "192.168.122.161" = ["photos.example.com" "films.example.com" "transmission.example.com"];
+  };
+
 
   # nvidia
   services.hardware.bolt.enable = true;

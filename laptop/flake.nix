@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    unstableNixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprpanel.url =
       "github:Jas-SinghFSU/HyprPanel/2be9f1ef6c2df2ecf0eebe5a039e8029d8d151cd"; # Mar 2 2025
     #    hyprswitch.url = "github:h3rmt/hyprswitch/release";
@@ -19,20 +20,26 @@
     #nix-citizen.url = "github:LovingMelody/nix-citizen";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-flatpak, nixos-generators, ...
+  outputs = inputs@{ self, nixpkgs, unstableNixpkgs, nix-flatpak, nixos-generators, ...
     }: # add nix-citizen if needed
-    let system = "x86_64-linux";
+    let 
+    	system = "x86_64-linux";
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+        	inherit inputs; 
+			unstable = import unstableNixpkgs {
+				inherit system;
+				config.allowUnfree = true;
+			};
+        };
 
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
           overlays = [
             inputs.hyprpanel.overlay
-            #         inputs.hyprswitch.overlays
           ];
         };
         modules = [

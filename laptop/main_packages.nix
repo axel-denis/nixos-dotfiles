@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, unstable, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     neofetch
@@ -31,9 +31,10 @@
     })
     cudaPackages.cuda_cudart
     cudatoolkit
-    (blender.override {
+    /*(unstable.blender.override {
       cudaSupport = true;
-    })
+    })*/
+    unstable.blender
 
     vscode.fhs # fhs allows for extensions to use internal binaries
   ];

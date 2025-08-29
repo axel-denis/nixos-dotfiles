@@ -9,6 +9,10 @@
     hunspellDicts.fr-any
     #    hunspellDicts.en_US
     obs-studio
+
+    micro
+
+    bottles
   ];
 
   programs.steam = {
