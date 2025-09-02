@@ -19,7 +19,27 @@
   programs.hyprland.enable = true;
   services.displayManager.defaultSession = "hyprland";
   services.fail2ban.enable = true; # block repeated ssh login attemps
-  services.tlp.enable = true; # power gestion/savings
+  services.tlp = {
+  settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 100;
+
+      INTEL_GPU_MIN_FREQ_ON_AC = 1300;
+      INTEL_GPU_MIN_FREQ_ON_BAT = 500;
+
+      #Optional helps save long term battery health
+      #START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
+      #STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+    };
+  };
 
   networking.hosts = {
     "192.168.122.161" = ["photos.example.com" "films.example.com" "transmission.example.com"];
@@ -102,11 +122,11 @@
 
   # enable ssh
   services.openssh = {
-    enable = false;
+    enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
-      PubkeyAuthentication = true;
+#      PubkeyAuthentication = true;
     };
   };
 
