@@ -3,16 +3,13 @@
     bitwarden-desktop
     arduino-ide
 
-    #libreoffice & speell check
     libreoffice-qt
     hunspell
     hunspellDicts.fr-any
-    #    hunspellDicts.en_US
     obs-studio
-
     micro
-
     bottles
+    prusa-slicer
   ];
 
   programs.steam = {
