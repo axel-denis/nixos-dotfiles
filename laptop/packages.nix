@@ -1,16 +1,20 @@
 { config, pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
-    arduino-ide
+    #arduino-ide
+
+
 
     libreoffice-qt
     hunspell
     hunspellDicts.fr-any
     obs-studio
     micro
-    bottles
+   # bottles
     prusa-slicer
   ];
+
+  virtualisation.docker.enable = true;
 
   programs.steam = {
     enable = true;
@@ -22,6 +26,7 @@
       true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
+/*
   # for arduino ide to compile to renesas board
   services.udev.packages = [
     (pkgs.writeTextFile {
@@ -38,4 +43,5 @@
   users.groups.libvirtd.members = [ "axel" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+*/
 }

@@ -7,20 +7,20 @@
     hyprpanel.url =
       "github:Jas-SinghFSU/HyprPanel/2be9f1ef6c2df2ecf0eebe5a039e8029d8d151cd"; # Mar 2 2025
     #    hyprswitch.url = "github:h3rmt/hyprswitch/release";
-    matugen.url = "github:/InioX/Matugen";
+#    matugen.url = "github:/InioX/Matugen";
     /* tlpui = {
          url = "github:d4nj1/TLPUI";
          flake = false;
        };
     */
-    nix-flatpak.url =
-      "github:gmodena/nix-flatpak/?ref=5e54c3c"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+#    nix-flatpak.url =
+#      "github:gmodena/nix-flatpak/?ref=5e54c3c"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+#    nixos-generators.url = "github:nix-community/nixos-generators";
+#    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
     #nix-citizen.url = "github:LovingMelody/nix-citizen";
   };
 
-  outputs = inputs@{ self, nixpkgs, unstableNixpkgs, nix-flatpak, nixos-generators, ...
+  outputs = inputs@{ self, nixpkgs, unstableNixpkgs, ...
     }: # add nix-citizen if needed
     let 
     	system = "x86_64-linux";
@@ -43,7 +43,6 @@
           ];
         };
         modules = [
-          nix-flatpak.nixosModules.nix-flatpak
           ./hardware-configuration.nix
           ./configuration.nix
           ./packages.nix

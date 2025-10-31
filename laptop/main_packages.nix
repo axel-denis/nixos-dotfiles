@@ -1,6 +1,11 @@
 { config, pkgs, unstable, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    hyprpicker
+    cava
+    swaynotificationcenter
+    playerctl
+    nemo
     neofetch
     pkgs.kitty # required for the default Hyprland config
     wl-clipboard
@@ -11,6 +16,9 @@
     jq # necessary for hyprland focus.sh
     direnv
     firefox
+    (chromium.override {
+      commandLineArgs = "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo";
+    })
     brightnessctl
     pipewire
     wireplumber # check if the two are necessary
@@ -23,7 +31,6 @@
     webcord
     hyprpanel
     # hyprswitch failed for now
-    inputs.matugen.packages.${system}.default
     spotify
     # TODO wireguard
     (where-is-my-sddm-theme.override {
@@ -56,10 +63,22 @@
     criticalPowerAction = "Hibernate";
   };
 
-  services.flatpak.enable = true;
-  # run with flatpak run (full package name)
-  services.flatpak.packages = [
-    # TODO - does not detect tlp...
-    "com.github.d4nj1.tlpui"
-  ];
+  # hardware accel
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      #intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  # auto mount usb:
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
 }

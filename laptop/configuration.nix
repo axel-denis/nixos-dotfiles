@@ -3,6 +3,11 @@
   imports = [ ./cachix.nix ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+#  networking.wg-quick.interfaces.wg0.configFile = "/etc/nixos/config_wireguard_backup1.conf";
+
+	# REMOVE
+	networking.firewall.enable = true;
+
   # Bootloader.
 #  boot.loader.grub.enable = pkgs.lib.mkForce true;
 #  boot.loader.grub.device = "/dev/vda";
@@ -41,17 +46,13 @@
     };
   };
 
-  networking.hosts = {
-    "192.168.122.161" = ["photos.example.com" "films.example.com" "transmission.example.com"];
-  };
-
-
   # nvidia
   services.hardware.bolt.enable = true;
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
 
+/*
   # allows wireguard to pass the firewall
   # import a wireguard file with :
   # nmcli connection import type wireguard file filename.conf
@@ -76,6 +77,7 @@
      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 4264 -j RETURN || true
    '';
   };
+*/
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -137,6 +139,22 @@
   };
 
   programs.git.enable = true;
+
+  environment.etc."zshrc".text = ''
+    ns() {
+      if [ "$#" -eq 0 ]; then
+        echo "Usage: ns <package1> [package2 ...]"
+        return 1
+      fi
+
+      local args=()
+      for pkg in "$@"; do
+        args+=("nixpkgs#$pkg")
+      done
+
+      nix shell "''${args[@]}"
+    }
+  '';
 
   environment.interactiveShellInit = ''
     alias update='curl -sSL https://raw.githubusercontent.com/axel-denis/nixos-dotfiles/main/install.sh | nix-shell -p git --run "sh -s -- laptop"'
