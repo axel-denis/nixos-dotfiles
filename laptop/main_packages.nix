@@ -1,6 +1,7 @@
 { config, pkgs, unstable, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    catppuccin-cursors.frappeFlamingo
     hyprpicker
     cava
     swaynotificationcenter
@@ -81,4 +82,5 @@
   services.udisks2.enable = true;
   services.devmon.enable = true;
   services.gvfs.enable = true;
+
 }
