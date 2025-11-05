@@ -37,8 +37,8 @@
     (where-is-my-sddm-theme.override {
         variants = ["qt5"];
     })
-    cudaPackages.cuda_cudart
-    cudatoolkit
+#    cudaPackages.cuda_cudart
+#    cudatoolkit
     /*(unstable.blender.override {
       cudaSupport = true;
     })*/
