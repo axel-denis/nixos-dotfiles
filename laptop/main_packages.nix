@@ -1,6 +1,7 @@
 { config, pkgs, unstable, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    vulkan-hdr-layer-kwin6 # hdr for intel
     catppuccin-cursors.frappeFlamingo
     hyprpicker
     cava
@@ -37,8 +38,8 @@
     (where-is-my-sddm-theme.override {
         variants = ["qt5"];
     })
-#    cudaPackages.cuda_cudart
-#    cudatoolkit
+    cudaPackages.cuda_cudart
+    cudatoolkit
     /*(unstable.blender.override {
       cudaSupport = true;
     })*/

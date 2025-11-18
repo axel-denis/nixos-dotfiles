@@ -1,9 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, unstable, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     #arduino-ide
 
-
+    unstable.mpv
 
     libreoffice-qt
     hunspell

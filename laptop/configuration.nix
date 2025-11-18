@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, unstable, inputs, ... }:
 {
   imports = [ ./cachix.nix ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -21,7 +21,12 @@
 
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = true;
-  programs.hyprland.enable = true;
+#  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+#    package = inputs.unstableHyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = unstable.hyprland;
+  };
   services.displayManager.defaultSession = "hyprland";
   services.fail2ban.enable = true; # block repeated ssh login attemps
   services.tlp = {
