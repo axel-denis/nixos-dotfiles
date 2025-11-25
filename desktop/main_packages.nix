@@ -8,6 +8,7 @@
     swaynotificationcenter
     playerctl
     nemo
+    hypridle
     kitty
     wl-clipboard # for screenshot
     nixfmt-classic
@@ -18,7 +19,7 @@
     direnv
     firefox
     (chromium.override {
-      commandLineArgs = "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo";
+#      commandLineArgs = "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,PlatformHEVCDecoderSupport,UseMultiPlaneFormatForHardwareVideo";
     })
     brightnessctl
     pipewire
@@ -35,10 +36,11 @@
 
     cudaPackages.cuda_cudart
     cudatoolkit
-    (unstable.blender.override { # long to build
+    (blender.override { # long to build
       cudaSupport = true;
     })
     #unstable.blender
+#    blender
 
     vscode.fhs # fhs allows for extensions to use internal binaries
   ];
@@ -54,4 +56,16 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = true;
+    nvidiaSettings = true;
+    powerManagement.enable = true;
+  };
+  hardware.graphics = {
+    enable = true;
+  };
+  services.xserver.videoDrivers = ["nvidia"];
+
 }

@@ -14,11 +14,11 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
-        	inherit inputs; 
-			unstable = import unstableNixpkgs {
-				inherit system;
-				config.allowUnfree = true;
-			};
+       	  inherit inputs; 
+	  unstable = import unstableNixpkgs {
+	    inherit system;
+	    config.allowUnfree = true;
+	  };
         };
 
         pkgs = import nixpkgs {
@@ -32,6 +32,7 @@
           ./main_packages.nix
           ./users.nix
           ./dotfiles.nix
+          ./filesystems.nix
         ];
       };
     };
