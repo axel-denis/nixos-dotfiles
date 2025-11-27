@@ -33,6 +33,7 @@
           ./users.nix
           ./dotfiles.nix
           ./filesystems.nix
+#          ./macros.nix
         ];
       };
     };

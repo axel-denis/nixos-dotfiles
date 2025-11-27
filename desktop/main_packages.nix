@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     catppuccin-cursors.frappeFlamingo
     hyprpicker
+    htop
     cava
     waybar
     swaynotificationcenter
