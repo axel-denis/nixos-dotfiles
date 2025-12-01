@@ -4,9 +4,9 @@
 
     unstable.mpv # video player (for hdr testing)
 
-    libreoffice-qt
+/*    libreoffice-qt
     hunspell
-    hunspellDicts.fr-any
+    hunspellDicts.fr-any*/
 
     obs-studio
 

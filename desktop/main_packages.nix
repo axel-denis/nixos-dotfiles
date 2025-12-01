@@ -4,6 +4,7 @@
     catppuccin-cursors.frappeFlamingo
     hyprpicker
     htop
+#    jellyfin-media-player
     cava
     waybar
     swaynotificationcenter
@@ -35,6 +36,7 @@
         variants = ["qt5"];
     })
 
+    vulkan-hdr-layer-kwin6
     cudaPackages.cuda_cudart
     cudatoolkit
     (blender.override { # long to build
